@@ -1,7 +1,6 @@
 #ifndef KERNELCONVOLUTION_FILTER_H
 #define KERNELCONVOLUTION_FILTER_H
 
-#include <algorithm>
 #include <limits>
 #include <array>
 #include <type_traits>
