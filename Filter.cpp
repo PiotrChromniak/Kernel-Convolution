@@ -1,10 +1,14 @@
 #include "Filter.h"
 #include "value_range.h"
+#include "gauss_blur.hpp"
 
 void Filter::gaussian(bitmap_image &image) {
-    const Matrix3X3 kernel{{{1 / 9.0f, 1 / 9.0f, 1 / 9.0f},
-                                   {1 / 9.0f, 1 / 9.0f, 1 / 9.0f},
-                                   {1 / 9.0f, 1 / 9.0f, 1 / 9.0f}}};
+    const auto kernel_1d = chrom::get_gauss_kernel(3);
+    Matrix3X3 kernel;
+    for(auto y = 0 ;y<3;++y)
+        for(auto x = 0;x<3;++x)
+            kernel[x][y]=kernel_1d[3*y+x];
+
     convolution(image, kernel);
 }
 
